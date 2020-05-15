@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ncu.base.dao.LabelDao">
+
+    <insert id="createLabel" parameterType="com.ncu.base.entity.Label">
+        insert into label(id,label_name,status,is_recommend,fans)
+        values(#{id},#{labelName},#{status},#{recommend},#{fans})
+    </insert>
+
+    <delete id="deleteLabel" parameterType="java.lang.String">
+        delete from label
+        where id = #{id}
+    </delete>
+
+    <update id="updateLabel" parameterType="com.ncu.base.entity.Label">
+        update label
+        set label_name = #{labelName},
+            status = #{status},
+            is_recommend = #{recommend},
+            fans = #{fans},
+            gmt_updated = #{gmtUpdated}
+        where id = #{id}
+    </update>
+
+    <resultMap id="labelMap" type="com.ncu.base.entity.Label">
+        <id column="id" property="id"/>
+        <result column="label_name" property="labelName"/>
+        <result column="status" property="status"/>
+        <result column="is_recommend" property="recommend"/>
+        <result column="fans" property="fans"/>
+        <result column="gmt_create" property="gmtCreate"/>
+        <result column="gmt_updated" property="gmtUpdated"/>
+    </resultMap>
+
+    <select id="selectAllLabel" resultMap="labelMap">
+        select * from label
+    </select>
+
+</mapper>
