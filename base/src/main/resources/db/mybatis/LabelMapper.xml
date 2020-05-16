@@ -18,7 +18,7 @@
             status = #{status},
             is_recommend = #{recommend},
             fans = #{fans},
-            gmt_updated = #{gmtUpdated}
+            gmt_updated = now()
         where id = #{id}
     </update>
 
